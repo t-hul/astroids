@@ -4,7 +4,7 @@ See guided course at [boot.dev](https://boot.dev/courses/build-asteroids-python)
 This repo contains the project of the finished course.
 
 ## Recommended extensions
-- [ ] Add a scoring system
+- [x] Add a scoring system
 - [ ] Implement multiple lives and respawning
 - [ ] Add an explosion effect for the asteroids
 - [ ] Add acceleration to the player movement
@@ -16,3 +16,6 @@ This repo contains the project of the finished course.
 - [ ] Add a shield power-up
 - [ ] Add a speed power-up
 - [ ] Add bombs that can be dropped
+
+## Further extensions
+- [x] Simple UI to display stats like score

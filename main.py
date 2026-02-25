@@ -9,6 +9,7 @@ from logger import log_event, log_state
 from player import Player
 from shot import Shot
 from score import Score
+from userinterface import UserInterface
 
 
 def main():
@@ -34,6 +35,7 @@ def main():
     player = Player(x=SCREEN_WIDTH / 2, y=SCREEN_HEIGHT / 2)
     asteroidfield = AsteroidField()
     score = Score()
+    ui = UserInterface(score)
 
     while True:
         log_state()
@@ -47,6 +49,7 @@ def main():
         updatable.update(dt)
         for item in drawable:
             item.draw(screen)
+        ui.draw(screen)
 
         for asteroid in asteroids:
             if asteroid.collides_with(player):
