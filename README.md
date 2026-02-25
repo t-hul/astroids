@@ -5,7 +5,7 @@ This repo contains the project of the finished course.
 
 ## Recommended extensions
 - [x] Add a scoring system
-- [ ] Implement multiple lives and respawning
+- [x] Implement multiple lives and respawning
 - [ ] Add an explosion effect for the asteroids
 - [x] Add acceleration to the player movement
 - [ ] Make the objects wrap around the screen instead of disappearing
@@ -19,3 +19,7 @@ This repo contains the project of the finished course.
 
 ## Further extensions
 - [x] Simple UI to display stats like score
+- [x] Add life counter to UI
+- [ ] Add time to UI
+- [ ] Create timed events, e.g. faster asteroids with faster scoring
+- [ ] Spawn lootable objects
