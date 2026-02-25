@@ -1,5 +1,5 @@
 import pygame
-from constants import SCORE_PER_SECOND
+from constants import SCORE_PER_SECOND, SCORE_PER_SPLIT
 
 
 class Score(pygame.sprite.Sprite):
@@ -9,3 +9,6 @@ class Score(pygame.sprite.Sprite):
 
     def update(self, dt):
         self.float_value += SCORE_PER_SECOND * dt
+
+    def count_split(self):
+        self.float_value += SCORE_PER_SPLIT
