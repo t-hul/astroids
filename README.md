@@ -9,7 +9,7 @@ This repo contains the project of the finished course.
 - [ ] Add an explosion effect for the asteroids
 - [x] Add acceleration to the player movement
 - [x] Make the objects wrap around the screen instead of disappearing
-- [ ] Add a background image
+- [x] Add a background image
 - [ ] Create different weapon types
 - [ ] Make the asteroids lumpy instead of perfectly round
 - [ ] Make the ship have a triangular hit box instead of a circular one
@@ -24,3 +24,4 @@ This repo contains the project of the finished course.
 - [ ] Create timed events, e.g. faster asteroids with faster scoring
 - [ ] Spawn lootable objects
 - [x] Reduce spawning of asteroids based on density
+- [x] Let background move

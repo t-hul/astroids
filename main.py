@@ -12,10 +12,6 @@ from shot import Shot
 from userinterface import UserInterface
 
 
-def clear_screen(surf, rect):
-    surf.fill("black", rect)
-
-
 def main():
     print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
     print(f"Screen width: {SCREEN_WIDTH}")
@@ -49,7 +45,7 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
-        screen.fill("black")
+        asteroidfield.draw_background(screen)
 
         updatable.update(dt)
         for item in drawable:
@@ -65,7 +61,7 @@ def main():
                     sys.exit()
                 for asteroid in asteroids:
                     asteroid.kill()
-                asteroids.clear(screen, clear_screen(screen, asteroidfield.rect))
+                asteroids.clear(screen, asteroidfield.draw_background(screen))
                 player.reset(screen)
                 ui.draw(screen)
                 pygame.display.flip()
