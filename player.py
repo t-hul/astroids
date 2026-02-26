@@ -18,8 +18,8 @@ from shot import Shot
 
 
 class Player(CircleShape):
-    def __init__(self, x, y):
-        super().__init__(x, y, PLAYER_RADIUS)
+    def __init__(self, rect):
+        super().__init__(*rect.center, PLAYER_RADIUS, rect)
         self.rotation = 0
         self.speed = 0
         self.shot_timer = 0
@@ -39,9 +39,6 @@ class Player(CircleShape):
 
     def rotate(self, dt):
         self.rotation += PLAYER_TURN_SPEED * dt
-
-    def move(self, dt):
-        self.position += self.velocity * dt
 
     def accelerate(self, dt):
         # self.speed = min(PLAYER_SPEED, self.speed + PLAYER_ACCELERATION * dt)
@@ -73,7 +70,7 @@ class Player(CircleShape):
         if self.shot_timer > 0:
             return
         self.shot_timer = PLAYER_SHOOT_COOLDOWN_SECONDS
-        shot = Shot(self.position.x, self.position.y)
+        shot = Shot(self.position.x, self.position.y, self.active_rect)
         shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOT_SPEED
 
     def loose_live(self):

@@ -8,7 +8,7 @@ This repo contains the project of the finished course.
 - [x] Implement multiple lives and respawning
 - [ ] Add an explosion effect for the asteroids
 - [x] Add acceleration to the player movement
-- [ ] Make the objects wrap around the screen instead of disappearing
+- [x] Make the objects wrap around the screen instead of disappearing
 - [ ] Add a background image
 - [ ] Create different weapon types
 - [ ] Make the asteroids lumpy instead of perfectly round
@@ -23,3 +23,4 @@ This repo contains the project of the finished course.
 - [ ] Add time to UI
 - [ ] Create timed events, e.g. faster asteroids with faster scoring
 - [ ] Spawn lootable objects
+- [ ] Reduce spawning of asteroids based on number

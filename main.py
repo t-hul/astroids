@@ -23,9 +23,6 @@ def main():
 
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    playground = pygame.Rect(
-        0, UI_TOP_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - UI_TOP_HEIGHT
-    )
     clock = pygame.time.Clock()
     dt = 0
 
@@ -39,8 +36,9 @@ def main():
     AsteroidField.containers = updatable
     Shot.containers = (shots, updatable, drawable)
     Score.containers = updatable
-    player = Player(x=SCREEN_WIDTH / 2, y=SCREEN_HEIGHT / 2)
-    asteroidfield = AsteroidField()
+    asteroidfield = AsteroidField(
+        0, UI_TOP_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - UI_TOP_HEIGHT)
+    player = Player(asteroidfield.rect)
     score = Score()
     ui = UserInterface(score, player)
 
@@ -67,7 +65,7 @@ def main():
                     sys.exit()
                 for asteroid in asteroids:
                     asteroid.kill()
-                asteroids.clear(screen, clear_screen(screen, playground))
+                asteroids.clear(screen, clear_screen(screen, asteroidfield.rect))
                 player.reset(screen)
                 ui.draw(screen)
                 pygame.display.flip()

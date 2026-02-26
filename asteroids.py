@@ -8,14 +8,14 @@ from logger import log_event
 
 
 class Asteroid(CircleShape):
-    def __init__(self, x, y, radius):
-        super().__init__(x, y, radius)
+    def __init__(self, x, y, radius, rect):
+        super().__init__(x, y, radius, rect)
 
     def draw(self, screen):
         pygame.draw.circle(screen, "white", self.position, self.radius, LINE_WIDTH)
 
     def update(self, dt):
-        self.position += self.velocity * dt
+        self.move(dt)
 
     def split(self):
         self.kill()
@@ -29,7 +29,9 @@ class Asteroid(CircleShape):
         second_split_velocity = self.velocity.rotate(-random_angle)
         split_radius = self.radius - ASTEROID_MIN_RADIUS
 
-        first_split_asteroid = Asteroid(self.position.x, self.position.y, split_radius)
+        first_split_asteroid = Asteroid(
+            self.position.x, self.position.y, split_radius, self.active_rect)
         first_split_asteroid.velocity = first_split_velocity * 1.2
-        second_split_asteroid = Asteroid(self.position.x, self.position.y, split_radius)
+        second_split_asteroid = Asteroid(
+            self.position.x, self.position.y, split_radius, self.active_rect)
         second_split_asteroid.velocity = second_split_velocity * 1.2
