@@ -16,6 +16,7 @@ class Asteroid(CircleShape):
 
     def update(self, dt):
         self.move(dt)
+        self.wrap_active_rect()
 
     def split(self):
         self.kill()

@@ -65,6 +65,7 @@ class Player(CircleShape):
             self.shoot()
 
         self.move(dt)
+        self.wrap_active_rect()
 
     def shoot(self):
         if self.shot_timer > 0:

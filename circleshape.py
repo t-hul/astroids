@@ -25,7 +25,6 @@ class CircleShape(pygame.sprite.Sprite):
 
     def move(self, dt):
         self.position += self.velocity * dt
-        self.wrap_active_rect()
 
     def collides_with(self, other):
         distance = self.position.distance_to(other.position)

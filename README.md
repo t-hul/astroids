@@ -23,4 +23,4 @@ This repo contains the project of the finished course.
 - [ ] Add time to UI
 - [ ] Create timed events, e.g. faster asteroids with faster scoring
 - [ ] Spawn lootable objects
-- [ ] Reduce spawning of asteroids based on number
+- [x] Reduce spawning of asteroids based on density

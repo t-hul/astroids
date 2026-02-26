@@ -37,9 +37,9 @@ def main():
     Shot.containers = (shots, updatable, drawable)
     Score.containers = updatable
     asteroidfield = AsteroidField(
-        0, UI_TOP_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - UI_TOP_HEIGHT)
+        0, UI_TOP_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - UI_TOP_HEIGHT, asteroids)
     player = Player(asteroidfield.rect)
-    score = Score()
+    score = Score(asteroidfield)
     ui = UserInterface(score, player)
 
     while True:
