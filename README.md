@@ -25,3 +25,4 @@ This repo contains the project of the finished course.
 - [ ] Spawn lootable objects
 - [x] Reduce spawning of asteroids based on density
 - [x] Let background move
+- [ ] Dash mechanic
