@@ -33,3 +33,5 @@ This repo contains the project of the finished course extended by features liste
 - [ ] Asteroids collide
 - [ ] Asteroids split if collision is hard enough
 - [ ] Animate thrusters
+- [ ] Damage mechanic, bigger asteroids are harder to split
+- [ ] Show scored points of split

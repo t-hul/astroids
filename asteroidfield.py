@@ -80,7 +80,7 @@ class AsteroidField(pygame.sprite.Sprite):
         rect_area = self.rect.width * self.rect.height
         asteroid_area = 0
         for asteroid in self.asteroids_group:
-            asteroid_area += 3.14 * asteroid.radius ** 2
+            asteroid_area += asteroid.area
         return asteroid_area / rect_area
 
     def draw_background(self, surf):

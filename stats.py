@@ -1,5 +1,5 @@
 import pygame
-from constants import SCORE_MAX_PER_SECOND, SCORE_PER_SPLIT, ASTERIOD_MAX_DENSITY
+from constants import SCORE_MAX_PER_SECOND, SCORE_PER_HEALTH, ASTERIOD_MAX_DENSITY
 
 
 class Stats(pygame.sprite.Sprite):
@@ -14,5 +14,5 @@ class Stats(pygame.sprite.Sprite):
                        self.asteroidfield.density / ASTERIOD_MAX_DENSITY)
         self.time += dt
 
-    def count_split(self):
-        self.score += SCORE_PER_SPLIT
+    def count_split(self, health):
+        self.score += SCORE_PER_HEALTH * health
