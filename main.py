@@ -54,8 +54,8 @@ def main():
 
         for asteroid in asteroids:
             if player.collides_with(asteroid):
-                player.loose_live()
-                if player.lives <= 0:
+                player.loose_life()
+                if player.lifes <= 0:
                     print("Game over!")
                     print(f"Score: {int(score.float_value)}")
                     sys.exit()

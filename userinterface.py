@@ -1,6 +1,6 @@
 import pygame
 
-from constants import PLAYER_LIVES, SCREEN_WIDTH, UI_FONT_SIZE, UI_TOP_HEIGHT
+from constants import PLAYER_LIFES, SCREEN_WIDTH, UI_FONT_SIZE, UI_TOP_HEIGHT
 
 
 class UserInterface(pygame.sprite.Sprite):
@@ -18,6 +18,10 @@ class UserInterface(pygame.sprite.Sprite):
 
     def draw(self, screen):
         pygame.draw.rect(screen, "gray", self.top_bar)
+        self.draw_score(screen)
+        self.draw_lifes(screen)
+
+    def draw_score(self, screen):
         score_text = self.font.render(
             f"{int(self.score.float_value)}", True, "black", "gray"
         )
@@ -28,10 +32,11 @@ class UserInterface(pygame.sprite.Sprite):
             (SCREEN_WIDTH - score_width - 10, (UI_TOP_HEIGHT - score_height) / 2),
         )
 
-        for i in range(PLAYER_LIVES):
-            x_pos = SCREEN_WIDTH / 2 + (i - PLAYER_LIVES / 2) * 40
+    def draw_lifes(self, screen):
+        for i in range(PLAYER_LIFES):
+            x_pos = SCREEN_WIDTH / 2 + (i - PLAYER_LIFES / 2) * 40
             y_pos = UI_TOP_HEIGHT / 2 - 16
-            if i < PLAYER_LIVES - self.player.lives:
+            if i < PLAYER_LIFES - self.player.lifes:
                 screen.blit(self.heart_dead_img, (x_pos, y_pos))
             else:
                 screen.blit(self.heart_life_img, (x_pos, y_pos))

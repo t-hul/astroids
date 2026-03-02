@@ -4,7 +4,7 @@ from circleshape import CircleShape
 from constants import (
     LINE_WIDTH,
     PLAYER_ACCELERATION,
-    PLAYER_LIVES,
+    PLAYER_LIFES,
     PLAYER_MAX_SPEED,
     PLAYER_RADIUS,
     PLAYER_SHOOT_COOLDOWN_SECONDS,
@@ -23,7 +23,7 @@ class Player(CircleShape):
         self.rotation = 0
         self.speed = 0
         self.shot_timer = 0
-        self.lives = PLAYER_LIVES
+        self.lifes = PLAYER_LIFES
 
     # in the Player class
     def triangle(self):
@@ -89,9 +89,9 @@ class Player(CircleShape):
         shot = Shot(self.position.x, self.position.y, self.active_rect)
         shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOT_SPEED
 
-    def loose_live(self):
-        self.lives -= 1
-        print(f"You are hit! {self.lives}/{PLAYER_LIVES} lives left")
+    def loose_life(self):
+        self.lifes -= 1
+        print(f"You are hit! {self.lifes}/{PLAYER_LIFES} lifes left")
         log_event("player_hit")
 
     def reset(self, screen):
