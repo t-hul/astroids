@@ -1,7 +1,7 @@
 # Asteroids Game 
 See guided course at [boot.dev](https://boot.dev/courses/build-asteroids-python)
 
-This repo contains the project of the finished course.
+This repo contains the project of the finished course extended by features listed below.
 
 ## Recommended extensions
 - [x] Add a scoring system
@@ -24,5 +24,8 @@ This repo contains the project of the finished course.
 - [ ] Create timed events, e.g. faster asteroids with faster scoring, asteroid swarm (group moves in one direction), shooting star (high points)
 - [ ] Spawn lootable objects
 - [x] Reduce spawning of asteroids based on density
-- [x] Let background move
-- [ ] Dash mechanic
+- [x] Let background move, random reflecting movement
+- [ ] Couple background movement to ship movement (scale background velocity by distance to background border)
+- [ ] Dash mechanic, jump in direction, ignore damage
+- [ ] Starting screen
+- [ ] Automated game for starting screen
