@@ -67,6 +67,21 @@ class Player(CircleShape):
         self.move(dt)
         self.wrap_active_rect()
 
+    def collides_with(self, other):
+        # approximate trinagle by corner points and midpoints
+        # test if any point is inside other
+        corners = self.triangle()
+        points_to_test = corners.copy()
+        for i in range(len(corners)):
+            midpoint = corners[i].lerp(corners[(i+1) % len(corners)], 0.5)
+            points_to_test.append(midpoint)
+
+        for point in points_to_test:
+            distance = point.distance_to(other.position)
+            if distance <= other.radius:
+                return True
+        return False
+
     def shoot(self):
         if self.shot_timer > 0:
             return

@@ -10,9 +10,9 @@ This repo contains the project of the finished course extended by features liste
 - [x] Add acceleration to the player movement
 - [x] Make the objects wrap around the screen instead of disappearing
 - [x] Add a background image
-- [ ] Create different weapon types, e.g turret, rocket (following mouse pointer)
+- [ ] Create different weapon types, e.g turret, rocket (following mouse pointer), laser beam
 - [ ] Make the asteroids lumpy instead of perfectly round
-- [ ] Make the ship have a triangular hit box instead of a circular one
+- [x] Make the ship have a triangular hit box instead of a circular one (approximated by 6 points)
 - [ ] Add a shield power-up, segmented?
 - [ ] Add a speed power-up, let background move faster
 - [ ] Add bombs that can be dropped, rumble effect

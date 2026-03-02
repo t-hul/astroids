@@ -53,7 +53,7 @@ def main():
         ui.draw(screen)
 
         for asteroid in asteroids:
-            if asteroid.collides_with(player):
+            if player.collides_with(asteroid):
                 player.loose_live()
                 if player.lives <= 0:
                     print("Game over!")
