@@ -6,9 +6,10 @@ from asteroidfield import AsteroidField
 from asteroids import Asteroid
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH, UI_TOP_HEIGHT
 from logger import log_event, log_state
+from loot import Loot
 from player import Player
-from stats import Stats
 from shot import Shot
+from stats import Stats
 from userinterface import UserInterface
 
 
@@ -26,16 +27,19 @@ def main():
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
     shots = pygame.sprite.Group()
+    loot = pygame.sprite.Group()
 
     Player.containers = (updatable, drawable)
     Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = updatable
     Shot.containers = (shots, updatable, drawable)
     Stats.containers = updatable
+    Loot.containers = (loot, updatable, drawable)
     asteroidfield = AsteroidField(
-        0, UI_TOP_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - UI_TOP_HEIGHT, asteroids)
-    player = Player(asteroidfield.rect)
+        0, UI_TOP_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - UI_TOP_HEIGHT, asteroids
+    )
     stats = Stats(asteroidfield)
+    player = Player(asteroidfield.rect, stats)
     ui = UserInterface(stats, player)
 
     while True:
@@ -54,7 +58,7 @@ def main():
 
         for asteroid in asteroids:
             if player.collides_with(asteroid):
-                player.loose_life()
+                player.lose_life()
                 if player.lifes <= 0:
                     print("Game over!")
                     print(f"Score: {int(stats.score)}")
@@ -72,6 +76,11 @@ def main():
                     log_event("asteroid_shot")
                     asteroid.take_damage(shot.damage, stats)
                     shot.kill()
+
+        for item in loot:
+            if player.collides_with(item):
+                item.kill()
+                player.pickup(item)
 
         pygame.display.flip()
         dt = clock.tick(60) / 1000

@@ -18,12 +18,14 @@ from shot import Shot
 
 
 class Player(CircleShape):
-    def __init__(self, rect):
+    def __init__(self, rect, stats):
         super().__init__(*rect.center, PLAYER_RADIUS, rect)
-        self.rotation = 0
+        self.rotation = 180
         self.speed = 0
         self.shot_timer = 0
         self.lifes = PLAYER_LIFES
+        self.color = "white"
+        self.stats = stats
 
     # in the Player class
     def triangle(self):
@@ -35,7 +37,7 @@ class Player(CircleShape):
         return [a, b, c]
 
     def draw(self, screen):
-        pygame.draw.polygon(screen, "white", self.triangle(), LINE_WIDTH)
+        pygame.draw.polygon(screen, self.color, self.triangle(), LINE_WIDTH)
 
     def rotate(self, dt):
         self.rotation += PLAYER_TURN_SPEED * dt
@@ -73,7 +75,7 @@ class Player(CircleShape):
         corners = self.triangle()
         points_to_test = corners.copy()
         for i in range(len(corners)):
-            midpoint = corners[i].lerp(corners[(i+1) % len(corners)], 0.5)
+            midpoint = corners[i].lerp(corners[(i + 1) % len(corners)], 0.5)
             points_to_test.append(midpoint)
 
         for point in points_to_test:
@@ -88,10 +90,12 @@ class Player(CircleShape):
         self.shot_timer = PLAYER_SHOOT_COOLDOWN_SECONDS
         front_position = self.triangle()[0]
         shot = Shot(front_position.x, front_position.y, self.active_rect)
-        shot.velocity = pygame.Vector2(0, 1).rotate(
-            self.rotation) * PLAYER_SHOT_SPEED + self.velocity
+        shot.velocity = (
+            pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOT_SPEED
+            + self.velocity
+        )
 
-    def loose_life(self):
+    def lose_life(self):
         self.lifes -= 1
         print(f"You are hit! {self.lifes}/{PLAYER_LIFES} lifes left")
         log_event("player_hit")
@@ -100,3 +104,17 @@ class Player(CircleShape):
         self.position = pygame.Vector2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
         self.velocity = pygame.Vector2(0, 0)
         self.draw(screen)
+
+    def pickup(self, loot_item):
+        self.color = loot_item.color
+        action = loot_item.pickup_action
+        if hasattr(self, action):
+            getattr(self, action)()
+        else:
+            raise NotImplementedError(f"Action '{action}' is not implemented")
+
+    def loot_ore(self):
+        self.stats.add_ore()
+
+    def loot_shield(self):
+        pass

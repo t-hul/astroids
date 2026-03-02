@@ -1,5 +1,11 @@
 import pygame
-from constants import SCORE_MAX_PER_SECOND, SCORE_PER_HEALTH, ASTERIOD_MAX_DENSITY
+
+from constants import (
+    ASTERIOD_MAX_DENSITY,
+    SCORE_MAX_PER_SECOND,
+    SCORE_PER_HEALTH,
+    SCORE_PER_ORE,
+)
 
 
 class Stats(pygame.sprite.Sprite):
@@ -8,11 +14,20 @@ class Stats(pygame.sprite.Sprite):
         self.score = 0
         self.asteroidfield = asteroidfield
         self.time = 0
+        self.ore = 0
 
     def update(self, dt):
-        self.score += (SCORE_MAX_PER_SECOND * dt *
-                       self.asteroidfield.density / ASTERIOD_MAX_DENSITY)
+        self.score += (
+            SCORE_MAX_PER_SECOND
+            * dt
+            * self.asteroidfield.density
+            / ASTERIOD_MAX_DENSITY
+        )
         self.time += dt
 
     def count_split(self, health):
         self.score += SCORE_PER_HEALTH * health
+
+    def add_ore(self):
+        self.ore += 1
+        self.score += SCORE_PER_ORE

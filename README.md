@@ -22,7 +22,7 @@ This repo contains the project of the finished course extended by features liste
 - [x] Add life counter to UI
 - [x] Add time to UI
 - [ ] Create timed events, e.g. faster asteroids with faster scoring, asteroid swarm (group moves in one direction), shooting star (high points)
-- [ ] Spawn lootable objects
+- [x] Spawn lootable objects
 - [x] Reduce spawning of asteroids based on density
 - [ ] Area of bigger asteroids includes area of their smaller children too 󰁔 reduce ratio of bigger asteroids
 - [x] Let background move, random reflecting movement
@@ -35,3 +35,5 @@ This repo contains the project of the finished course extended by features liste
 - [ ] Animate thrusters
 - [x] Damage mechanic, bigger asteroids are harder to split
 - [ ] Show scored points of split, show damage on collision
+- [ ] Tractor beam to pick up loot in bigger range
+- [ ] Add UI bar with active power-ups

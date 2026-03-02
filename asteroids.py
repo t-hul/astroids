@@ -3,16 +3,18 @@ import random
 import pygame
 
 from circleshape import CircleShape
-from constants import ASTEROID_MIN_RADIUS, ASTEROID_MIN_HEALTH, LINE_WIDTH
+from constants import ASTEROID_MIN_HEALTH, ASTEROID_MIN_RADIUS, LINE_WIDTH, LOOT_RADIUS
 from logger import log_event
+from loot import Loot
 
 
 class Asteroid(CircleShape):
     def __init__(self, x, y, radius, rect):
         super().__init__(x, y, radius, rect)
-        self.area = 3.14 * self.radius ** 2
-        self.start_health = self.area * ASTEROID_MIN_HEALTH / \
-            (3.14 * ASTEROID_MIN_RADIUS ** 2)
+        self.area = 3.14 * self.radius**2
+        self.start_health = (
+            self.area * ASTEROID_MIN_HEALTH / (3.14 * ASTEROID_MIN_RADIUS**2)
+        )
         self.health = self.start_health
 
     def draw(self, screen):
@@ -35,11 +37,14 @@ class Asteroid(CircleShape):
         split_radius = self.radius - ASTEROID_MIN_RADIUS
 
         first_split_asteroid = Asteroid(
-            self.position.x, self.position.y, split_radius, self.active_rect)
+            self.position.x, self.position.y, split_radius, self.active_rect
+        )
         first_split_asteroid.velocity = first_split_velocity * 1.2
         second_split_asteroid = Asteroid(
-            self.position.x, self.position.y, split_radius, self.active_rect)
+            self.position.x, self.position.y, split_radius, self.active_rect
+        )
         second_split_asteroid.velocity = second_split_velocity * 1.2
+        self.spawn_loot()
 
         stats.count_split(self.start_health)
 
@@ -47,3 +52,7 @@ class Asteroid(CircleShape):
         self.health -= damage
         if self.health <= 0:
             self.split(stats)
+
+    def spawn_loot(self):
+        new_loot = Loot(self.position.x, self.position.y, LOOT_RADIUS, self.active_rect)
+        new_loot.velocity = self.velocity
