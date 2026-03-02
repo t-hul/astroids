@@ -86,8 +86,10 @@ class Player(CircleShape):
         if self.shot_timer > 0:
             return
         self.shot_timer = PLAYER_SHOOT_COOLDOWN_SECONDS
-        shot = Shot(self.position.x, self.position.y, self.active_rect)
-        shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOT_SPEED
+        front_position = self.triangle()[0]
+        shot = Shot(front_position.x, front_position.y, self.active_rect)
+        shot.velocity = pygame.Vector2(0, 1).rotate(
+            self.rotation) * PLAYER_SHOT_SPEED + self.velocity
 
     def loose_life(self):
         self.lifes -= 1
