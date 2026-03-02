@@ -4,8 +4,8 @@ from constants import PLAYER_LIFES, SCREEN_WIDTH, UI_FONT_SIZE, UI_TOP_HEIGHT
 
 
 class UserInterface(pygame.sprite.Sprite):
-    def __init__(self, score, player):
-        self.score = score
+    def __init__(self, stats, player):
+        self.stats = stats
         self.player = player
         self.top_bar = pygame.Rect(0, 0, SCREEN_WIDTH, UI_TOP_HEIGHT)
         self.font = pygame.font.Font(None, UI_FONT_SIZE)
@@ -23,7 +23,7 @@ class UserInterface(pygame.sprite.Sprite):
 
     def draw_score(self, screen):
         score_text = self.font.render(
-            f"{int(self.score.float_value)}", True, "black", "gray"
+            f"{int(self.stats.score)}", True, "black", "gray"
         )
         score_height = score_text.get_height()
         score_width = score_text.get_width()

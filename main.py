@@ -7,7 +7,7 @@ from asteroids import Asteroid
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH, UI_TOP_HEIGHT
 from logger import log_event, log_state
 from player import Player
-from score import Score
+from stats import Stats
 from shot import Shot
 from userinterface import UserInterface
 
@@ -31,12 +31,12 @@ def main():
     Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = updatable
     Shot.containers = (shots, updatable, drawable)
-    Score.containers = updatable
+    Stats.containers = updatable
     asteroidfield = AsteroidField(
         0, UI_TOP_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - UI_TOP_HEIGHT, asteroids)
     player = Player(asteroidfield.rect)
-    score = Score(asteroidfield)
-    ui = UserInterface(score, player)
+    stats = Stats(asteroidfield)
+    ui = UserInterface(stats, player)
 
     while True:
         log_state()
@@ -57,7 +57,7 @@ def main():
                 player.loose_life()
                 if player.lifes <= 0:
                     print("Game over!")
-                    print(f"Score: {int(score.float_value)}")
+                    print(f"Score: {int(stats.score)}")
                     sys.exit()
                 for asteroid in asteroids:
                     asteroid.kill()
@@ -72,7 +72,7 @@ def main():
                     log_event("asteroid_shot")
                     asteroid.split()
                     shot.kill()
-                    score.count_split()
+                    stats.count_split()
 
         pygame.display.flip()
         dt = clock.tick(60) / 1000
