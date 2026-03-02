@@ -24,8 +24,11 @@ This repo contains the project of the finished course extended by features liste
 - [ ] Create timed events, e.g. faster asteroids with faster scoring, asteroid swarm (group moves in one direction), shooting star (high points)
 - [ ] Spawn lootable objects
 - [x] Reduce spawning of asteroids based on density
+- [ ] Area of bigger asteroids includes area of their smaller children too 󰁔 reduce ratio of bigger asteroids
 - [x] Let background move, random reflecting movement
 - [ ] Couple background movement to ship movement (scale background velocity by distance to background border)
 - [ ] Dash mechanic, jump in direction, ignore damage
 - [ ] Starting screen
 - [ ] Automated game for starting screen
+- [ ] Asteroids collide
+- [ ] Asteroids split if collision is hard enough
