@@ -7,10 +7,12 @@ class Stats(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self, self.containers)
         self.score = 0
         self.asteroidfield = asteroidfield
+        self.time = 0
 
     def update(self, dt):
         self.score += (SCORE_MAX_PER_SECOND * dt *
                        self.asteroidfield.density / ASTERIOD_MAX_DENSITY)
+        self.time += dt
 
     def count_split(self):
         self.score += SCORE_PER_SPLIT

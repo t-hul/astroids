@@ -20,7 +20,7 @@ This repo contains the project of the finished course extended by features liste
 ## Further extensions
 - [x] Simple UI to display stats like score
 - [x] Add life counter to UI
-- [ ] Add time to UI
+- [x] Add time to UI
 - [ ] Create timed events, e.g. faster asteroids with faster scoring, asteroid swarm (group moves in one direction), shooting star (high points)
 - [ ] Spawn lootable objects
 - [x] Reduce spawning of asteroids based on density
@@ -32,3 +32,4 @@ This repo contains the project of the finished course extended by features liste
 - [ ] Automated game for starting screen
 - [ ] Asteroids collide
 - [ ] Asteroids split if collision is hard enough
+- [ ] Animate thrusters

@@ -20,6 +20,7 @@ class UserInterface(pygame.sprite.Sprite):
         pygame.draw.rect(screen, "gray", self.top_bar)
         self.draw_score(screen)
         self.draw_lifes(screen)
+        self.draw_time(screen)
 
     def draw_score(self, screen):
         score_text = self.font.render(
@@ -40,3 +41,17 @@ class UserInterface(pygame.sprite.Sprite):
                 screen.blit(self.heart_dead_img, (x_pos, y_pos))
             else:
                 screen.blit(self.heart_life_img, (x_pos, y_pos))
+
+    def draw_time(self, screen):
+        time = int(self.stats.time)
+        hours = time // 3600
+        minutes = (time % 3600) // 60
+        seconds = (time % 3600) % 60
+        time_text = self.font.render(
+            f"{hours:02}:{minutes:02}:{seconds:02}", True, "black", "gray"
+        )
+        height = time_text.get_height()
+        screen.blit(
+            time_text,
+            (10, (UI_TOP_HEIGHT - height) / 2),
+        )
