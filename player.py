@@ -2,6 +2,7 @@ import pygame
 
 from circleshape import CircleShape
 from constants import (
+    BOOST_MULTIPLIER,
     LINE_WIDTH,
     PLAYER_ACCELERATION,
     PLAYER_LIFES,
@@ -26,6 +27,7 @@ class Player(CircleShape):
         self.lifes = PLAYER_LIFES
         self.color = "white"
         self.stats = stats
+        self.is_boosting = False
 
     # in the Player class
     def triangle(self):
@@ -40,16 +42,37 @@ class Player(CircleShape):
         pygame.draw.polygon(screen, self.color, self.triangle(), LINE_WIDTH)
 
     def rotate(self, dt):
+        if self.is_boosting:
+            return
         self.rotation += PLAYER_TURN_SPEED * dt
 
     def accelerate(self, dt):
         # self.speed = min(PLAYER_SPEED, self.speed + PLAYER_ACCELERATION * dt)
         unit_vector = pygame.Vector2(0, 1)
         rotated_vector = unit_vector.rotate(self.rotation)
-        rotated_with_speed_vector = rotated_vector * PLAYER_ACCELERATION * dt
+        rotated_with_speed_vector = rotated_vector * self.get_acceleration() * dt
         self.velocity += rotated_with_speed_vector
-        if self.velocity.length() > PLAYER_MAX_SPEED:
-            self.velocity.scale_to_length(PLAYER_MAX_SPEED)
+        # if self.velocity.length() > self.get_max_speed():
+        #     self.velocity.scale_to_length(self.get_max_speed())
+        self.velocity.clamp_magnitude_ip(self.get_max_speed())
+
+    def boost(self, dt):
+        self.is_boosting = True
+        self.accelerate(dt)
+
+    def get_max_speed(self):
+        return (
+            BOOST_MULTIPLIER * PLAYER_MAX_SPEED
+            if self.is_boosting
+            else PLAYER_MAX_SPEED
+        )
+
+    def get_acceleration(self):
+        return (
+            BOOST_MULTIPLIER * PLAYER_ACCELERATION
+            if self.is_boosting
+            else PLAYER_ACCELERATION
+        )
 
     def update(self, dt):
         keys = pygame.key.get_pressed()
@@ -65,6 +88,10 @@ class Player(CircleShape):
             self.accelerate(-dt)
         if keys[pygame.K_SPACE]:
             self.shoot()
+        if keys[pygame.K_LSHIFT]:
+            self.boost(dt)
+        if not keys[pygame.K_LSHIFT] and self.is_boosting:
+            self.is_boosting = False
 
         self.move(dt)
         self.wrap_active_rect()

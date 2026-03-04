@@ -17,6 +17,8 @@ This repo contains the project of the finished course extended by features liste
 - [x] Damage mechanic, bigger asteroids are harder to split
 - [x] Make the ship have a triangular hit box instead of a circular one (approximated by 6 points)
 - [x] Spawn lootable objects
+- [x] Add text annotations (damage, ore)
+- [x] Add boost for player acceleration
 
 ## Recommended extensions
 - [ ] Add an explosion effect for the asteroids
@@ -40,3 +42,6 @@ This repo contains the project of the finished course extended by features liste
 - [ ] Tractor beam to pick up loot in bigger range
 - [ ] Add UI bar with active power-ups
 - [ ] Add basic animation system
+- [ ] Spawn space station to buy upgrades for ore
+- [ ] Add icon to UI (ore, time, points)
+- [ ] Energy system for shield (collect energy, lose over time, lose on collision)
