@@ -39,3 +39,4 @@ This repo contains the project of the finished course extended by features liste
 - [ ] Show scored points of split, show damage on collision
 - [ ] Tractor beam to pick up loot in bigger range
 - [ ] Add UI bar with active power-ups
+- [ ] Add basic animation system

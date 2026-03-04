@@ -2,6 +2,7 @@ import sys
 
 import pygame
 
+from annotation import Annotation
 from asteroidfield import AsteroidField
 from asteroids import Asteroid
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH, UI_TOP_HEIGHT
@@ -25,6 +26,7 @@ def main():
 
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    drawable_fg = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
     shots = pygame.sprite.Group()
     loot = pygame.sprite.Group()
@@ -35,6 +37,8 @@ def main():
     Shot.containers = (shots, updatable, drawable)
     Stats.containers = updatable
     Loot.containers = (loot, updatable, drawable)
+    Annotation.containers = (updatable, drawable_fg)
+
     asteroidfield = AsteroidField(
         0, UI_TOP_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - UI_TOP_HEIGHT, asteroids
     )
@@ -53,6 +57,8 @@ def main():
 
         updatable.update(dt)
         for item in drawable:
+            item.draw(screen)
+        for item in drawable_fg:
             item.draw(screen)
         ui.draw(screen)
 

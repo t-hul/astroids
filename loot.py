@@ -2,8 +2,9 @@ import random
 
 import pygame
 
+from annotation import Annotation
 from circleshape import CircleShape
-from constants import LINE_WIDTH, LOOT_RADIUS
+from constants import LINE_WIDTH, LOOT_ANNOTATION_SECONDS, LOOT_RADIUS
 
 
 class Loot(CircleShape):
@@ -44,3 +45,16 @@ class Loot(CircleShape):
         items = list(self.loot_table.keys())
         chances = [loot_type["chance"] for loot_type in self.loot_table.values()]
         return random.choices(items, weights=chances)[0]
+
+    def loot_ore(self, target):
+        target.stats.add_ore()
+        Annotation(
+            target.position.x,
+            target.position.y,
+            "+1",
+            self.color,
+            LOOT_ANNOTATION_SECONDS,
+        )
+
+    def loot_shield(self, target):
+        pass

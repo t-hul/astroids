@@ -108,13 +108,7 @@ class Player(CircleShape):
     def pickup(self, loot_item):
         self.color = loot_item.color
         action = loot_item.pickup_action
-        if hasattr(self, action):
-            getattr(self, action)()
+        if hasattr(loot_item, action):
+            getattr(loot_item, action)(self)
         else:
             raise NotImplementedError(f"Action '{action}' is not implemented")
-
-    def loot_ore(self):
-        self.stats.add_ore()
-
-    def loot_shield(self):
-        pass

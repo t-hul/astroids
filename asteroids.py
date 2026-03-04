@@ -2,8 +2,15 @@ import random
 
 import pygame
 
+from annotation import Annotation
 from circleshape import CircleShape
-from constants import ASTEROID_MIN_HEALTH, ASTEROID_MIN_RADIUS, LINE_WIDTH, LOOT_RADIUS
+from constants import (
+    ASTEROID_MIN_HEALTH,
+    ASTEROID_MIN_RADIUS,
+    DAMAGE_ANNOTATION_SECONDS,
+    LINE_WIDTH,
+    LOOT_RADIUS,
+)
 from logger import log_event
 from loot import Loot
 
@@ -50,6 +57,13 @@ class Asteroid(CircleShape):
 
     def take_damage(self, damage, stats):
         self.health -= damage
+        Annotation(
+            self.position.x,
+            self.position.y,
+            f"-{damage}",
+            "red",
+            DAMAGE_ANNOTATION_SECONDS,
+        )
         if self.health <= 0:
             self.split(stats)
 
