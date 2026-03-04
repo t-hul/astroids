@@ -22,14 +22,20 @@ This repo contains the project of the finished course extended by features liste
 
 ## Recommended extensions
 - [ ] Add an explosion effect for the asteroids
-- [ ] Create different weapon types, e.g turret, rocket (following mouse pointer), laser beam
+- [ ] Create different weapon types
+    - [ ] turret
+    - [ ] rocket (following mouse pointer)
+    - [ ] laser beam (damage scales with distance)
 - [ ] Make the asteroids lumpy instead of perfectly round
 - [ ] Add a shield power-up, segmented?
 - [ ] Add a speed power-up, let background move faster
 - [ ] Add bombs that can be dropped, rumble effect
 
 ## Further extensions
-- [ ] Create timed events, e.g. faster asteroids with faster scoring, asteroid swarm (group moves in one direction), shooting star (high points)
+- [ ] Create timed events
+    - [ ] faster asteroids with faster scoring
+    - [ ] asteroid swarm (group moves in one direction)
+    - [ ] shooting star (high points)
 - [ ] Area of bigger asteroids includes area of their smaller children too 󰁔 reduce ratio of bigger asteroids
 - [ ] Couple background movement to ship movement (scale background velocity by distance to background border)
 - [ ] Dash mechanic, jump in direction, ignore damage
@@ -43,5 +49,5 @@ This repo contains the project of the finished course extended by features liste
 - [ ] Add UI bar with active power-ups
 - [ ] Add basic animation system
 - [ ] Spawn space station to buy upgrades for ore
-- [ ] Add icon to UI (ore, time, points)
+- [ ] Add icons to UI (ore , time, points)
 - [ ] Energy system for shield (collect energy, lose over time, lose on collision)
