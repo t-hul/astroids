@@ -19,18 +19,31 @@ class UserInterface(pygame.sprite.Sprite):
     def draw(self, screen):
         pygame.draw.rect(screen, "gray", self.top_bar)
         self.draw_score(screen)
+        self.draw_ore(screen)
         self.draw_lifes(screen)
         self.draw_time(screen)
 
     def draw_score(self, screen):
-        score_text = self.font.render(
+        rendered_text = self.font.render(
             f"{int(self.stats.score)}", True, "black", "gray"
         )
-        score_height = score_text.get_height()
-        score_width = score_text.get_width()
+        rendered_height = rendered_text.get_height()
+        rendered_width = rendered_text.get_width()
         screen.blit(
-            score_text,
-            (SCREEN_WIDTH - score_width - 10, (UI_TOP_HEIGHT - score_height) / 2),
+            rendered_text,
+            (SCREEN_WIDTH - rendered_width - 10, (UI_TOP_HEIGHT - rendered_height) / 2),
+        )
+
+    def draw_ore(self, screen):
+        rendered_text = self.font.render(f"{self.stats.ore}", True, "black", "gray")
+        rendered_height = rendered_text.get_height()
+        rendered_width = rendered_text.get_width()
+        screen.blit(
+            rendered_text,
+            (
+                0.8 * SCREEN_WIDTH - rendered_width,
+                (UI_TOP_HEIGHT - rendered_height) / 2,
+            ),
         )
 
     def draw_lifes(self, screen):
