@@ -8,11 +8,14 @@ from constants import (
     PLAYER_LIFES,
     PLAYER_MAX_SPEED,
     PLAYER_RADIUS,
+    PLAYER_SHIELD_RADIUS,
     PLAYER_SHOOT_COOLDOWN_SECONDS,
     PLAYER_SHOT_SPEED,
     PLAYER_TURN_SPEED,
     SCREEN_HEIGHT,
     SCREEN_WIDTH,
+    SHIELD_ENERGY_COST_PER_SECOND,
+    TOGGLE_DEBOUNCE_SECONDS,
 )
 from logger import log_event
 from shot import Shot
@@ -28,6 +31,8 @@ class Player(CircleShape):
         self.color = "white"
         self.stats = stats
         self.is_boosting = False
+        self.has_shield = False
+        self.toggle_shield_timer = 0
 
     # in the Player class
     def triangle(self):
@@ -40,6 +45,14 @@ class Player(CircleShape):
 
     def draw(self, screen):
         pygame.draw.polygon(screen, self.color, self.triangle(), LINE_WIDTH)
+        if self.has_shield:
+            pygame.draw.circle(
+                screen,
+                "blue",
+                self.position,
+                PLAYER_SHIELD_RADIUS,
+                LINE_WIDTH,
+            )
 
     def rotate(self, dt):
         if self.is_boosting:
@@ -77,6 +90,12 @@ class Player(CircleShape):
     def update(self, dt):
         keys = pygame.key.get_pressed()
         self.shot_timer -= dt
+        self.toggle_shield_timer -= dt
+        if self.has_shield:
+            self.stats.energy -= SHIELD_ENERGY_COST_PER_SECOND * dt
+            if self.stats.energy <= 0:
+                self.stats.energy = 0
+                self.has_shield = False
 
         if keys[pygame.K_a]:
             self.rotate(-dt)
@@ -92,11 +111,15 @@ class Player(CircleShape):
             self.boost(dt)
         if not keys[pygame.K_LSHIFT] and self.is_boosting:
             self.is_boosting = False
+        if keys[pygame.K_f]:
+            self.toggle_shield()
 
         self.move(dt)
         self.wrap_active_rect()
 
     def collides_with(self, other):
+        if self.has_shield:
+            return False
         # approximate trinagle by corner points and midpoints
         # test if any point is inside other
         corners = self.triangle()
@@ -139,3 +162,14 @@ class Player(CircleShape):
             getattr(loot_item, action)(self)
         else:
             raise NotImplementedError(f"Action '{action}' is not implemented")
+
+    def toggle_shield(self):
+        if self.stats.energy <= 0 and not self.has_shield:
+            return
+        if self.toggle_shield_timer > 0:
+            return
+        self.toggle_shield_timer = TOGGLE_DEBOUNCE_SECONDS
+        if self.has_shield:
+            self.has_shield = False
+        else:
+            self.has_shield = True
