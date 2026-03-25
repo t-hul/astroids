@@ -19,6 +19,8 @@ This repo contains the project of the finished course extended by features liste
 - [x] Spawn lootable objects
 - [x] Add text annotations (damage, ore)
 - [x] Add boost for player acceleration
+- [x] Add a shield that can be toggled
+- [x] Energy system for shield (collect energy, lose over time)
 
 ## Recommended extensions
 - [ ] Add an explosion effect for the asteroids
@@ -27,7 +29,6 @@ This repo contains the project of the finished course extended by features liste
     - [ ] rocket (following mouse pointer)
     - [ ] laser beam (damage scales with distance)
 - [ ] Make the asteroids lumpy instead of perfectly round
-- [ ] Add a shield power-up, segmented?
 - [ ] Add a speed power-up, let background move faster
 - [ ] Add bombs that can be dropped, rumble effect
 
@@ -50,4 +51,4 @@ This repo contains the project of the finished course extended by features liste
 - [ ] Add basic animation system
 - [ ] Spawn space station to buy upgrades for ore
 - [ ] Add icons to UI (ore , time, points)
-- [ ] Energy system for shield (collect energy, lose over time, lose on collision)
+- [ ] Shield needs time to build up, segmented shield?
