@@ -21,6 +21,7 @@ class UserInterface(pygame.sprite.Sprite):
         pygame.draw.rect(screen, "gray", self.top_bar)
         self.draw_score(screen)
         self.draw_ore(screen)
+        self.draw_energy(screen)
         self.draw_lifes(screen)
         self.draw_time(screen)
 
@@ -39,7 +40,7 @@ class UserInterface(pygame.sprite.Sprite):
         rendered_text = self.font.render(f"{self.stats.ore}", True, "black", "gray")
         rendered_height = rendered_text.get_height()
         rendered_width = rendered_text.get_width()
-        x_pos = 0.8 * SCREEN_WIDTH - rendered_width
+        x_pos = 0.85 * SCREEN_WIDTH - rendered_width
         screen.blit(
             rendered_text,
             (
@@ -48,6 +49,20 @@ class UserInterface(pygame.sprite.Sprite):
             ),
         )
         screen.blit(self.ore_img, (x_pos - 40, UI_TOP_HEIGHT / 2 - 16))
+
+    def draw_energy(self, screen):
+        rendered_text = self.font.render(f"{self.stats.energy}", True, "black", "gray")
+        rendered_height = rendered_text.get_height()
+        rendered_width = rendered_text.get_width()
+        x_pos = 0.65 * SCREEN_WIDTH - rendered_width
+        screen.blit(
+            rendered_text,
+            (
+                x_pos,
+                (UI_TOP_HEIGHT - rendered_height) / 2,
+            ),
+        )
+        # screen.blit(self.ore_img, (x_pos - 40, UI_TOP_HEIGHT / 2 - 16))
 
     def draw_lifes(self, screen):
         for i in range(PLAYER_LIFES):

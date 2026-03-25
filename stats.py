@@ -15,6 +15,7 @@ class Stats(pygame.sprite.Sprite):
         self.asteroidfield = asteroidfield
         self.time = 0
         self.ore = 0
+        self.energy = 0
 
     def update(self, dt):
         self.score += (
@@ -31,3 +32,6 @@ class Stats(pygame.sprite.Sprite):
     def add_ore(self):
         self.ore += 1
         self.score += SCORE_PER_ORE
+
+    def add_energy(self):
+        self.energy += 10

@@ -71,6 +71,8 @@ def main():
                     sys.exit()
                 for asteroid in asteroids:
                     asteroid.kill()
+                for item in loot:
+                    item.kill()
                 asteroids.clear(screen, asteroidfield.draw_background(screen))
                 player.reset(screen)
                 ui.draw(screen)

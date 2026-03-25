@@ -16,10 +16,10 @@ class Loot(CircleShape):
             "destroyable": True,
             "duration": 2,
         },
-        "shield": {
-            "chance": 0.05,
+        "energy": {
+            "chance": 0.1,
             "color": "blue",
-            "pickup_action": "loot_shield",
+            "pickup_action": "loot_energy",
             "destroyable": False,
             "duration": 20,
         },
@@ -56,5 +56,12 @@ class Loot(CircleShape):
             LOOT_ANNOTATION_SECONDS,
         )
 
-    def loot_shield(self, target):
-        pass
+    def loot_energy(self, target):
+        target.stats.add_energy()
+        Annotation(
+            target.position.x,
+            target.position.y,
+            "+10",
+            self.color,
+            LOOT_ANNOTATION_SECONDS,
+        )
