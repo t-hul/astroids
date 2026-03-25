@@ -2,6 +2,7 @@ import pygame
 
 from circleshape import CircleShape
 from constants import (
+    BOOST_ENERGY_COST_PER_SECOND,
     BOOST_MULTIPLIER,
     LINE_WIDTH,
     PLAYER_ACCELERATION,
@@ -70,8 +71,11 @@ class Player(CircleShape):
         self.velocity.clamp_magnitude_ip(self.get_max_speed())
 
     def boost(self, dt):
+        if self.stats.energy <= 0:
+            return
         self.is_boosting = True
         self.accelerate(dt)
+        self.stats.energy -= BOOST_ENERGY_COST_PER_SECOND * dt
 
     def get_max_speed(self):
         return (
