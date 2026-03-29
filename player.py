@@ -1,5 +1,6 @@
 import pygame
 
+from animation import Animation
 from circleshape import CircleShape
 from constants import (
     BOOST_ENERGY_COST_PER_SECOND,
@@ -34,6 +35,9 @@ class Player(CircleShape):
         self.is_boosting = False
         self.has_shield = False
         self.toggle_shield_timer = 0
+        self.thruster_animation = Animation(
+            "assets/thruster_flame_sprite_sheet.png", self, 16, 16, (1, 0.5)
+        )
 
     # in the Player class
     def triangle(self):

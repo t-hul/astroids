@@ -2,6 +2,7 @@ import sys
 
 import pygame
 
+from animation import Animation
 from annotation import Annotation
 from asteroidfield import AsteroidField
 from asteroids import Asteroid
@@ -38,6 +39,7 @@ def main():
     Stats.containers = updatable
     Loot.containers = (loot, updatable, drawable)
     Annotation.containers = (updatable, drawable_fg)
+    Animation.containers = (updatable, drawable)
 
     asteroidfield = AsteroidField(
         0, UI_TOP_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - UI_TOP_HEIGHT, asteroids
